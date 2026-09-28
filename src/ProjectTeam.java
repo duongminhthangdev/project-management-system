@@ -1,3 +1,6 @@
+// Mã sinh viên: 20227067
+// Họ và tên:   Dương Minh Thắng
+
 public class ProjectTeam {
     private String projectCode;
     private String projectName;

@@ -1,3 +1,5 @@
+// Mã sinh viên: 20227067
+// Họ và tên:   Dương Minh Thắng
 public class Employee {
     protected String id;
     protected String fullName;

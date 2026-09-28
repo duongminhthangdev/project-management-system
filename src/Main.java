@@ -1,4 +1,7 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// Mã sinh viên: 20227067
+// Họ và tên:   Dương Minh Thắng
+// Kịch bản kiểm thử em viết trong file test
+// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
