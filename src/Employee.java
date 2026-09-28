@@ -1,22 +1,23 @@
 public class Employee {
-    String id;
-    String name;
-    double baseSalary;
+    protected String id;
+    protected String fullName;
+    protected double baseSalary;
 
-    public Employee(){
+    public Employee() {
         this.id = "UNKNOWN";
-        this.name = "Unnamed employee";
+        this.fullName = "Unnamed employee";
         this.baseSalary = 0.0;
     }
-    public Employee(String id, String name) {
-        this.id = id;
-        this.name = name;
+
+    public Employee(String id, String fullName) {
+        setId(id);
+        setFullName(fullName);
         this.baseSalary = 0.0;
     }
 
     public Employee(String id, String fullName, double baseSalary) {
         setId(id);
-        setname(fullName);
+        setFullName(fullName);
         setBaseSalary(baseSalary);
     }
 
@@ -26,20 +27,20 @@ public class Employee {
 
     public void setId(String id) {
         if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("Mã nhân sự (id) không được để rỗng.");
+            throw new IllegalArgumentException("Mã nhân sự không được để rỗng.");
         }
         this.id = id;
     }
 
-    public String getname() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setname(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Họ tên nhân sự không được để rỗng.");
+    public void setFullName(String fullName) {
+        if (fullName == null || fullName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Họ tên không được để rỗng.");
         }
-        this.name = name;
+        this.fullName = fullName;
     }
 
     public double getBaseSalary() {
@@ -53,10 +54,10 @@ public class Employee {
         this.baseSalary = baseSalary;
     }
 
-    // Nạp chồng phương thức (Overloading)
+    // Nạp chồng phương thức tăng lương
     public void increaseSalary(double amount) {
         if (amount <= 0) {
-            System.out.println("Lỗi: Giá trị tăng lương phải dương.");
+            System.out.println("Giá trị tăng lương phải dương.");
             return;
         }
         this.baseSalary += amount;
@@ -64,7 +65,7 @@ public class Employee {
 
     public void increaseSalary(double value, boolean byPercentage) {
         if (value <= 0) {
-            System.out.println("Lỗi: Giá trị tăng lương phải dương.");
+            System.out.println("Giá trị tăng lương phải dương.");
             return;
         }
         if (byPercentage) {
@@ -74,15 +75,13 @@ public class Employee {
         }
     }
 
-    // Các phương thức có thể ghi đè (Virtual-like in Java)
     public double calculateMonthlyCost() {
         return baseSalary;
     }
 
     public void displayInfo() {
         System.out.printf("ID: %-8s | Họ tên: %-20s | Lương CB: %,12.0f VND | Chi phí tháng: %,12.0f VND%n",
-                id, name, baseSalary, calculateMonthlyCost());
+                id, fullName, baseSalary, calculateMonthlyCost());
     }
-
-
 }
+

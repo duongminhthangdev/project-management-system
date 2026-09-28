@@ -1,24 +1,19 @@
-
-
 public class SoftwareEngineer extends Employee {
     private String primaryLanguage;
     private double technicalAllowance;
 
-    // Constructor 3 tham số
-    public SoftwareEngineer(String id, String name, String primaryLanguage) {
-        super(id, name, 0.0);
+    public SoftwareEngineer(String id, String fullName, String primaryLanguage) {
+        super(id, fullName, 0.0);
         setPrimaryLanguage(primaryLanguage);
         this.technicalAllowance = 0.0;
     }
 
-    // Constructor 5 tham số
-    public SoftwareEngineer(String id, String name, double baseSalary, String primaryLanguage, double technicalAllowance) {
-        super(id, name, baseSalary);
+    public SoftwareEngineer(String id, String fullName, double baseSalary, String primaryLanguage, double technicalAllowance) {
+        super(id, fullName, baseSalary);
         setPrimaryLanguage(primaryLanguage);
         setTechnicalAllowance(technicalAllowance);
     }
 
-    // Getters & Setters với Ràng buộc
     public String getPrimaryLanguage() {
         return primaryLanguage;
     }
@@ -36,12 +31,11 @@ public class SoftwareEngineer extends Employee {
 
     public void setTechnicalAllowance(double technicalAllowance) {
         if (technicalAllowance < 0) {
-            throw new IllegalArgumentException("Phụ cấp kỹ thuật không được âm.");
+            throw new IllegalArgumentException("Phụ cấp không được âm.");
         }
         this.technicalAllowance = technicalAllowance;
     }
 
-    // Ghi đè phương thức (Overriding)
     @Override
     public double calculateMonthlyCost() {
         return getBaseSalary() + technicalAllowance;
@@ -49,7 +43,7 @@ public class SoftwareEngineer extends Employee {
 
     @Override
     public void displayInfo() {
-        System.out.printf("ID: %-8s | Họ tên: %-20s | Lương CB: %,12.0f VND | Ngôn ngữ: %-8s | Phụ cấp: %,10.0f VND | Tổng chi phí: %,12.0f VND%n",
-                id, name, baseSalary, primaryLanguage, technicalAllowance, calculateMonthlyCost());
+        System.out.printf("ID: %-8s | Họ tên: %-20s | Lương CB: %,12.0f VND | Ngôn ngữ: %-8s | Phụ cấp: %,10.0f VND | Chi phí tháng: %,12.0f VND%n",
+                id, fullName, baseSalary, primaryLanguage, technicalAllowance, calculateMonthlyCost());
     }
 }
