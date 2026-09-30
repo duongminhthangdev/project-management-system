@@ -1,8 +1,8 @@
 // Mã sinh viên: 20227067
 // Họ và tên:   Dương Minh Thắng
 // Kịch bản kiểm thử em viết trong file test
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+//Bạn có thể sử dụng các công cụ AI để giúp tìm hiểu các khái niệm, phát triển ý tưởng và lập dàn ý cho suy nghĩ của mình.
+//Không sử dụng AI để viết, hoàn thành bài tập hoặc sửa lại bài làm của bạn.
 public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text

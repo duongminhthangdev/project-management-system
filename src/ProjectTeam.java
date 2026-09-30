@@ -46,33 +46,48 @@ public class ProjectTeam {
 
         boolean alreadyInTeam = contains(employee.getId());
 
-        // 1. Nếu chưa có trong danh sách thì thêm nút mới vào đầu DSLK
-        if (!alreadyInTeam) {
-            MemberNode newNode = new MemberNode(employee);
-            newNode.next = head;
-            head = newNode;
+        // Không thêm trùng lặp nhân sự đã có trong nhóm
+        if (alreadyInTeam) {
+            System.out.println("⚠️ Nhân sự " + employee.getFullName() + " (ID: " + employee.getId() + ") đã có trong nhóm!");
+            return false;
         }
 
-        // 2. Nếu makeLeader == true, gán làm Trưởng nhóm
+        // Thêm nút mới vào đầu danh sách liên kết
+        MemberNode newNode = new MemberNode(employee);
+        newNode.next = head;
+        head = newNode;
+
+        // Nếu makeLeader == true, gán ngay làm Trưởng nhóm
         if (makeLeader) {
             this.leader = employee;
+            System.out.println("✅ Đã thêm " + employee.getFullName() + " vào nhóm và bổ nhiệm làm Trưởng nhóm!");
+        } else {
+            System.out.println("✅ Đã thêm " + employee.getFullName() + " vào nhóm!");
         }
 
-        return !alreadyInTeam;
-    }
-
-    // Đổi Trưởng nhóm
-    public boolean changeLeader(Employee employee) {
-        if (employee == null) return false;
-
-        // Trưởng nhóm mới phải được thêm vào nhóm nếu chưa phải thành viên
-        if (!contains(employee.getId())) {
-            addMember(employee);
-        }
-        this.leader = employee;
         return true;
     }
 
+    // Đổi Trưởng nhóm (Ràng buộc: Bắt buộc phải là thành viên hiện tại của nhóm)
+    public boolean changeLeader(Employee employee) {
+        if (employee == null) {
+            System.out.println("❌ Lỗi: Đối tượng nhân sự không hợp lệ (null)!");
+            return false;
+        }
+
+        // Kiểm tra xem nhân sự đã thuộc danh sách thành viên hay chưa
+        if (!contains(employee.getId())) {
+            System.out.println("❌ Lỗi bổ nhiệm: Nhân sự '" + employee.getFullName()
+                    + "' (ID: " + employee.getId() + ") chưa phải là thành viên của nhóm. "
+                    + "Vui lòng thêm nhân sự vào nhóm bằng addMember() trước!");
+            return false; // Từ chối đổi Trưởng nhóm
+        }
+
+        // Đã là thành viên -> Tiến hành cập nhật vị trí Trưởng nhóm
+        this.leader = employee;
+        System.out.println("✅ Đã đổi Trưởng nhóm mới sang: " + employee.getFullName() + " (ID: " + employee.getId() + ")");
+        return true;
+    }
     // Xóa thành viên khỏi DSLK
     public boolean removeMember(String employeeId) {
         // Ràng buộc: Không được xóa trưởng nhóm khi chưa chọn trưởng nhóm thay thế
